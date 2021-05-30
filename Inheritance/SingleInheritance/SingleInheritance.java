@@ -36,17 +36,20 @@ class Bicycle{
 class MountainBike extends Bicycle{
     private int seatHeight;
 
-    public void getSeatHeight( int height ){
+    public void setSeatHeight( int height ){
         this.seatHeight = height;
     }
-    public int setSeatHeight() {
+    public int getSeatHeight() {
         return this.seatHeight;
     }
     public MountainBike( int gear, int speed, int startHeight){
         super( gear, speed);
 	this.seatHeight = startHeight;
     }
-
+    @Override
+    public void applyBrake( int decrement ){
+        super.setSpeed( super.getSpeed() - decrement);
+    }
     @Override
     public String toString(){
         return super.toString()+"\n seat height is "+ this.seatHeight;
@@ -57,6 +60,16 @@ class MountainBike extends Bicycle{
 public class SingleInheritance{
     public static void main ( String args[] ) {
         MountainBike mb = new MountainBike( 3, 100, 25);
+        Bicycle bicycle = new MountainBike( 2, 80, 25);
+        System.out.println( bicycle.toString() );
+	bicycle.speedUp(3);
+	System.out.println( bicycle.toString() );
+        bicycle.applyBrake( 3 );
+//This will throw compilation error as cannot find symbol 
+// Can call only methods in the super type, since super type is used to create the object
+//	bicycle.setSeatHeight( 30 );
+	System.out.println( bicycle.toString() );
+
 
 	System.out.println( mb.toString() );
     }
