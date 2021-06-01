@@ -49,6 +49,7 @@ class MountainBike extends Bicycle{
     @Override
     public void applyBrake( int decrement ){
         super.setSpeed( super.getSpeed() - decrement);
+	System.out.println(" MountainBike");
     }
     @Override
     public String toString(){
